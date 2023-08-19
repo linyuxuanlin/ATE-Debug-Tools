@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JTAG State Machine Simulator</title>
+  </head>
+  <body>
+    <h1>JTAG State Machine Simulator</h1>
+
+    <label for="initialState">Select Initial State:</label>
+    <select id="initialState">
+      <!-- Dynamically generate options for all state names -->
+      <script>
+        const stateNames = [
+          "Test-Logic-Reset",
+          "Run-Test/Idle",
+          "Select-DR-Scan",
+          "Capture-DR",
+          "Shift-DR",
+          "Exit1-DR",
+          "Pause-DR",
+          "Exit2-DR",
+          "Update-DR",
+          "Select-IR-Scan",
+          "Capture-IR",
+          "Shift-IR",
+          "Exit1-IR",
+          "Pause-IR",
+          "Exit2-IR",
+          "Update-IR",
+        ];
+
+        const initialStateSelect = document.getElementById("initialState");
+        stateNames.forEach((state, idx) => {
+          const option = document.createElement("option");
+          option.value = idx;
+          option.text = state;
+          initialStateSelect.appendChild(option);
+        });
+      </script>
+    </select>
+
+    <br /><br />
+
+    <label for="tmsSequence">Enter TMS Sequence (0s and 1s):</label>
+    <input type="text" id="tmsSequence" onkeydown="handleEnterKey(event)" />
+
+    <br /><br />
+
+    <button onclick="simulateStateMachine()">Simulate</button>
+
+    <br /><br />
+
+    <div id="output"></div>
+
+    <script>
+      const stateTransitions = {
+        "Test-Logic-Reset": { 0: "Run-Test/Idle", 1: "Test-Logic-Reset" },
+        "Run-Test/Idle": { 0: "Run-Test/Idle", 1: "Select-DR-Scan" },
+        "Select-DR-Scan": { 0: "Capture-DR", 1: "Select-IR-Scan" },
+        "Capture-DR": { 0: "Shift-DR", 1: "Exit1-DR" },
+        "Shift-DR": { 0: "Shift-DR", 1: "Exit1-DR" },
+        "Exit1-DR": { 0: "Pause-DR", 1: "Update-DR" },
+        "Pause-DR": { 0: "Pause-DR", 1: "Exit2-DR" },
+        "Exit2-DR": { 0: "Shift-DR", 1: "Update-DR" },
+        "Update-DR": { 0: "Run-Test/Idle", 1: "Select-DR-Scan" },
+        "Select-IR-Scan": { 0: "Capture-IR", 1: "Test-Logic-Reset" },
+        "Capture-IR": { 0: "Shift-IR", 1: "Exit1-IR" },
+        "Shift-IR": { 0: "Shift-IR", 1: "Exit1-IR" },
+        "Exit1-IR": { 0: "Pause-IR", 1: "Update-IR" },
+        "Pause-IR": { 0: "Pause-IR", 1: "Exit2-IR" },
+        "Exit2-IR": { 0: "Shift-IR", 1: "Update-IR" },
+        "Update-IR": { 0: "Run-Test/Idle", 1: "Select-DR-Scan" },
+      };
+
+      function handleEnterKey(event) {
+        if (event.key === "Enter") {
+          simulateStateMachine();
+        }
+      }
+
+      function simulateStateMachine() {
+        const initialStateIdx = document.getElementById("initialState").value;
+        const tmsSequence = document
+          .getElementById("tmsSequence")
+          .value.split("")
+          .map(Number);
+
+        const outputDiv = document.getElementById("output");
+
+        let currentState = stateNames[initialStateIdx];
+        outputDiv.innerHTML += `<p><b>Initial State</b>: ${currentState}</p>`;
+
+        tmsSequence.forEach((tms) => {
+          const nextState = stateTransitions[currentState][tms];
+          outputDiv.innerHTML += `<p>TMS= <b>${tms}</b> :&Tab;${currentState}&Tab;--> <b>${nextState}</b></p>`;
+          currentState = nextState;
+        });
+
+        outputDiv.innerHTML += `<p><b>Final State</b>: ${currentState}</p>`;
+      }
+    </script>
+    <img
+      src="..\assets\20230817\20230817134914.png"
+      alt="image-of-jtag-state-machine"
+      width="800"
+    />
+  </body>
+</html>
