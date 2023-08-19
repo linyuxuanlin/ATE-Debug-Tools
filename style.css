@@ -11,7 +11,6 @@ body {
 
 .header {
   position: fixed;
-  
   top: 0;
   left: 0;
   width: 100%;
@@ -29,10 +28,6 @@ body {
   margin-top: 80px; /* 考虑标题栏高度 */
 }
 
-.title {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
 
 .card {
   width: 300px;
