@@ -1,13 +1,16 @@
 function addReplaceRule() {
   const replaceRulesDiv = document.getElementById("replaceRules");
   const newReplaceRuleDiv = document.createElement("div");
-  //const ruleIndex = replaceRulesDiv.children.length + 1;
+  const ruleIndex = replaceRulesDiv.children.length + 1;
 
   newReplaceRuleDiv.className = "replaceRule";
   newReplaceRuleDiv.innerHTML = `
-<label for="find${ruleIndex}">待替换的文本： </label>
+  
+<br />
+<label for="find${ruleIndex}">待替换文本 ${ruleIndex}:</label>
 <input type="text" class="find" id="find${ruleIndex}" oninput="applyReplacements()">
-<label for="replace${ruleIndex}"> &nbsp; 将其替换为： </label>
+<br />
+<label for="replace${ruleIndex}">替换为文本 ${ruleIndex}:</label>
 <input type="text" class="replace" id="replace${ruleIndex}" oninput="applyReplacements()">
 `;
 

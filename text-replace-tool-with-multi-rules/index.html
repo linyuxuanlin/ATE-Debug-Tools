@@ -17,14 +17,15 @@
     <br />
     <div id="replaceRules">
       <div class="replaceRule">
-        <label for="find1">待替换的文本： </label>
+        <label for="find1">待替换文本 1:</label>
         <input
           type="text"
           class="find"
           id="find1"
           oninput="applyReplacements()"
         />
-        <label for="replace1"> &nbsp; 将其替换为： </label>
+        <br />
+        <label for="replace1">替换后文本 1:</label>
         <input
           type="text"
           class="replace"
@@ -33,6 +34,7 @@
         />
       </div>
     </div>
+
     <br />
     <button onclick="addReplaceRule()">增加替换规则</button>
     <button onclick="copyOutput()">一键复制</button>
