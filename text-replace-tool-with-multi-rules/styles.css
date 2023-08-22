@@ -37,6 +37,14 @@ textarea {
   transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
 }
 
+/* 添加媒体查询以适应小屏幕 */
+@media (max-width: 600px) {
+  .replaceRule {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+}
+
 .return-button:hover {
   background-color: #aeaeae;
   transform: translateY(-2px);
