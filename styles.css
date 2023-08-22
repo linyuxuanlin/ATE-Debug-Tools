@@ -1,0 +1,20 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+}
+
+#output {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  white-space: pre-line;
+}
+
+.highlight {
+  background-color: yellow;
+  font-weight: bold;
+}
