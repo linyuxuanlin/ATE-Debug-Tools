@@ -5,9 +5,9 @@ function addReplaceRule() {
 
   newReplaceRuleDiv.className = "replaceRule";
   newReplaceRuleDiv.innerHTML = `
-<label for="find${ruleIndex}">待替换文本 &nbsp; ${ruleIndex}:</label>
+<label for="find${ruleIndex}">将文本 </label>
 <input type="text" class="find" id="find${ruleIndex}" oninput="applyReplacements()">
-<label for="replace${ruleIndex}">替换后文本 ${ruleIndex}:</label>
+<label for="replace${ruleIndex}"> &nbsp; 替换为:</label>
 <input type="text" class="replace" id="replace${ruleIndex}" oninput="applyReplacements()">
 `;
 
