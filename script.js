@@ -1,3 +1,3 @@
 function navigateToTool(toolUrl) {
-    window.location.href = toolUrl;
+  window.location.href = toolUrl;
 }
