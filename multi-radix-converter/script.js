@@ -4,6 +4,7 @@ const inputElement = document.getElementById("input");
 const outputBaseRadios = document.getElementsByName("output-base");
 const outputElement = document.getElementById("output");
 const switchBtn = document.getElementById("switch-btn");
+const verticalOutputBtn = document.getElementById("vertical-output-btn");
 
 // 转换函数
 function convert() {
@@ -103,4 +104,21 @@ function copyOutput() {
 
 function goToHomePage() {
   window.location.href = "../index.html";
+}
+
+// 竖向输出函数
+function verticalOutput() {
+  // 如果输出不为二进制，不做任何操作
+  if (outputBase !== 2) {
+    return;
+  }
+
+  // 将输出转换为竖向输出
+  let verticalOutput = "";
+  for (let i = 0; i < outputElement.textContent.length; i++) {
+    verticalOutput += outputElement.textContent[i] + "\n";
+  }
+  verticalOutput = verticalOutput.replace(/0/g, "L").replace(/1/g, "H");
+  // 显示竖向输出
+  outputElement.textContent = verticalOutput;
 }
