@@ -115,9 +115,14 @@ f3Btn.addEventListener("click", () => {
   tempTextArea.select();
   document.execCommand("copy");
   document.body.removeChild(tempTextArea);
-  const event = new Event("keydown");
-  event.keyCode = 114; // F3 的键码为 114
-  document.dispatchEvent(event);
+  f3Btn.addEventListener('click', () => {
+    const event = new KeyboardEvent('keydown', {
+      keyCode: 114,
+      which: 114,
+      key: 'F3',
+      code: 'F3'
+    });
+    document.dispatchEvent(event);
 });
 
 function goToHomePage() {
