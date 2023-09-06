@@ -29,6 +29,11 @@ function convert() {
   // 将十进制转换为输出进制
   const output = isNaN(decimal) ? "" : decimal.toString(outputBase);
 
+  if (outputBase === 2) {
+    // 如果输出二进制的位数小于32位，前面补0
+    output = output.padStart(32, "0");
+  }
+
   // 显示结果
   outputElement.textContent = output;
   verticalOutput();
@@ -95,7 +100,7 @@ function copyOutput() {
 // 绑定事件
 switchBtn.addEventListener("click", switchOutput);
 copyBtn.addEventListener("click", copyOutput);
-verticalOutputBtn.addEventListener("click", verticalOutput);
+//verticalOutputBtn.addEventListener("click", verticalOutput);
 
 function copyOutput() {
   const outputText = document.getElementById("output").innerText;
