@@ -5,7 +5,14 @@ body {
 
 #output {
   margin-top: 20px;
-  font-size: 35px;
+  font-size: 30px;
+  border: 2px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  width: 400px;
+  height: 150px;
+  min-height: 50px;
+  overflow: auto;
 }
 
 /* 悬浮的返回按钮 */
