@@ -88,6 +88,7 @@ function copyOutput() {
 
 // 绑定事件
 switchBtn.addEventListener("click", switchOutput);
+copyBtn.addEventListener("click", copyOutput);
 
 function copyOutput() {
   const outputText = document.getElementById("output").innerText;
