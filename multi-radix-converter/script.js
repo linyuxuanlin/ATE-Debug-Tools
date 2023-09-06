@@ -32,15 +32,18 @@ function convert() {
   if (outputBase === 2) {
     // 如果输出二进制的位数小于32位，前面补0
     output = output.padStart(32, "0");
+    // 对输出结果进行格式化，每4个二进制数字之间增加一个空格
+    output = output.replace(/(\d{4})/g, "$1 ");
   }
 
   // 显示结果
   outputElement.textContent = output;
-  verticalOutput();
   // 如果竖向输出按钮已经被按下，将输出转换为竖向输出
   if (verticalOutputBtn.checked) {
     verticalOutput(outputBase);
   }
+  // 复制的数没有间隔
+  copyElement.textContent = output.replace(/\s/g, "");
 }
 
 // 自动转换输入
