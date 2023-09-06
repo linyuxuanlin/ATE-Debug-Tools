@@ -127,9 +127,3 @@ function verticalOutput(outputBase) {
   // 显示竖向输出
   outputElement.innerHTML = "<pre>" + verticalOutput + "</pre>";
 }
-
-const robot = require("robotjs");
-const f3Btn = document.getElementById("f3-btn");
-f3Btn.addEventListener("click", () => {
-  robot.keyTap("f3");
-});
