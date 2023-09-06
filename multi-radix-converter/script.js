@@ -27,7 +27,7 @@ function convert() {
   const decimal = input ? parseInt(input, inputBase) : NaN;
 
   // 将十进制转换为输出进制
-  const output = isNaN(decimal) ? "" : decimal.toString(outputBase);
+  let output = isNaN(decimal) ? "" : decimal.toString(outputBase);
 
   if (outputBase === 2) {
     // 如果输出二进制的位数小于32位，前面补0
