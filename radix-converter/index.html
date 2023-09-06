@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>进制转换工具</title>
+  </head>
+  <body>
+    <h1>进制转换工具</h1>
+    <p>
+      输入进制：
+      <select id="input-base">
+        <option value="2">二进制</option>
+        <option value="8">八进制</option>
+        <option value="10" selected>十进制</option>
+        <option value="16">十六进制</option>
+      </select>
+    </p>
+    <p>输入内容：<input type="text" id="input" /></p>
+    <p>
+      输出进制：
+      <select id="output-base">
+        <option value="2">二进制</option>
+        <option value="8">八进制</option>
+        <option value="10">十进制</option>
+        <option value="16" selected>十六进制</option>
+      </select>
+    </p>
+    <p>结果：<span id="output"></span></p>
+    <button id="convert-btn">转换</button>
+    <button id="copy-btn">复制结果</button>
+
+    <script>
+      // 获取 DOM 元素
+      const inputBaseSelect = document.getElementById("input-base");
+      const inputElement = document.getElementById("input");
+      const outputBaseSelect = document.getElementById("output-base");
+      const outputElement = document.getElementById("output");
+      const convertBtn = document.getElementById("convert-btn");
+      const copyBtn = document.getElementById("copy-btn");
+
+      // 转换函数
+      function convert() {
+        const inputBase = parseInt(inputBaseSelect.value);
+        const outputBase = parseInt(outputBaseSelect.value);
+        const input = inputElement.value;
+
+        // 将输入内容转换为十进制
+        const decimal = parseInt(input, inputBase);
+
+        // 将十进制转换为输出进制
+        const output = decimal.toString(outputBase);
+
+        // 显示结果
+        outputElement.textContent = output;
+      }
+
+      // 绑定事件
+      convertBtn.addEventListener("click", convert);
+      copyBtn.addEventListener("click", () => {
+        // 复制结果到剪贴板
+        navigator.clipboard.writeText(outputElement.textContent);
+      });
+    </script>
+  </body>
+</html>
