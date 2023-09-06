@@ -9,20 +9,18 @@
     <p>
       输入进制：
       <label
-        ><input type="radio" name="input-base" value="2" />
-        二进制（Binary）</label
+        ><input type="radio" name="input-base" value="2" /> 二进制（BIN）</label
       >
       <label
-        ><input type="radio" name="input-base" value="8" />
-        八进制（Octal）</label
+        ><input type="radio" name="input-base" value="8" /> 八进制（OCT）</label
       >
       <label
         ><input type="radio" name="input-base" value="10" checked />
-        十进制（Decimal）</label
+        十进制（DEC）</label
       >
       <label
         ><input type="radio" name="input-base" value="16" />
-        十六进制（Hexadecimal）</label
+        十六进制（HEX）</label
       >
     </p>
     <p>输入内容：<input type="text" id="input" /></p>
@@ -30,24 +28,23 @@
       输出进制：
       <label
         ><input type="radio" name="output-base" value="2" />
-        二进制（Binary）</label
+        二进制（BIN）</label
       >
       <label
         ><input type="radio" name="output-base" value="8" />
-        八进制（Octal）</label
+        八进制（OCT）</label
       >
       <label
         ><input type="radio" name="output-base" value="10" />
-        十进制（Decimal）</label
+        十进制（DEC）</label
       >
       <label
         ><input type="radio" name="output-base" value="16" checked />
-        十六进制（Hexadecimal）</label
+        十六进制（HEX）</label
       >
     </p>
     <p>结果：<span id="output"></span></p>
-    <button id="convert-btn">转换</button>
-    <button id="copy-btn">复制结果</button>
+    <button id="switch-btn">一键切换</button>
 
     <script>
       // 获取 DOM 元素
@@ -55,8 +52,7 @@
       const inputElement = document.getElementById("input");
       const outputBaseRadios = document.getElementsByName("output-base");
       const outputElement = document.getElementById("output");
-      const convertBtn = document.getElementById("convert-btn");
-      const copyBtn = document.getElementById("copy-btn");
+      const switchBtn = document.getElementById("switch-btn");
 
       // 转换函数
       function convert() {
@@ -85,12 +81,50 @@
         outputElement.textContent = output;
       }
 
+      // 自动转换输入
+      inputElement.addEventListener("input", convert);
+
+      // 一键切换函数
+      function switchOutput() {
+        // 获取当前输入和输出的值和进制
+        const input = inputElement.value;
+        const output = outputElement.textContent;
+        let inputBase, outputBase;
+        for (let i = 0; i < inputBaseRadios.length; i++) {
+          if (inputBaseRadios[i].checked) {
+            inputBase = parseInt(inputBaseRadios[i].value);
+            break;
+          }
+        }
+        for (let i = 0; i < outputBaseRadios.length; i++) {
+          if (outputBaseRadios[i].checked) {
+            outputBase = parseInt(outputBaseRadios[i].value);
+            break;
+          }
+        }
+
+        // 切换输入和输出的值和进制
+        inputElement.value = output;
+        outputElement.textContent = input;
+        for (let i = 0; i < inputBaseRadios.length; i++) {
+          if (parseInt(inputBaseRadios[i].value) === outputBase) {
+            inputBaseRadios[i].checked = true;
+            break;
+          }
+        }
+        for (let i = 0; i < outputBaseRadios.length; i++) {
+          if (parseInt(outputBaseRadios[i].value) === inputBase) {
+            outputBaseRadios[i].checked = true;
+            break;
+          }
+        }
+
+        // 自动转换输出
+        convert();
+      }
+
       // 绑定事件
-      convertBtn.addEventListener("click", convert);
-      copyBtn.addEventListener("click", () => {
-        // 复制结果到剪贴板
-        navigator.clipboard.writeText(outputElement.textContent);
-      });
+      switchBtn.addEventListener("click", switchOutput);
     </script>
   </body>
 </html>
