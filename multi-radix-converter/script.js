@@ -106,6 +106,20 @@ function copyOutput() {
   alert("已复制到剪贴板！");
 }
 
+const f3Btn = document.getElementById("f3-btn");
+f3Btn.addEventListener("click", () => {
+  const outputText = document.getElementById("output").innerText;
+  const tempTextArea = document.createElement("textarea");
+  tempTextArea.value = outputText;
+  document.body.appendChild(tempTextArea);
+  tempTextArea.select();
+  document.execCommand("copy");
+  document.body.removeChild(tempTextArea);
+  const event = new Event("keydown");
+  event.keyCode = 114; // F3 的键码为 114
+  document.dispatchEvent(event);
+});
+
 function goToHomePage() {
   window.location.href = "../index.html";
 }
