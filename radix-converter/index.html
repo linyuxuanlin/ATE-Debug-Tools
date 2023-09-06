@@ -1,65 +1,70 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>进制转换工具</title>
-  </head>
-  <body>
-    <h1>进制转换工具</h1>
-    <p>
-      输入进制：
-      <select id="input-base">
-        <option value="2">二进制</option>
-        <option value="8">八进制</option>
-        <option value="10" selected>十进制</option>
-        <option value="16">十六进制</option>
-      </select>
-    </p>
-    <p>输入内容：<input type="text" id="input" /></p>
-    <p>
-      输出进制：
-      <select id="output-base">
-        <option value="2">二进制</option>
-        <option value="8">八进制</option>
-        <option value="10">十进制</option>
-        <option value="16" selected>十六进制</option>
-      </select>
-    </p>
-    <p>结果：<span id="output"></span></p>
-    <button id="convert-btn">转换</button>
-    <button id="copy-btn">复制结果</button>
+<head>
+	<meta charset="UTF-8">
+	<title>进制转换工具</title>
+</head>
+<body>
+	<h1>进制转换工具</h1>
+	<p>输入进制：
+		<label><input type="radio" name="input-base" value="2"> 二进制</label>
+		<label><input type="radio" name="input-base" value="8"> 八进制</label>
+		<label><input type="radio" name="input-base" value="10" checked> 十进制</label>
+		<label><input type="radio" name="input-base" value="16"> 十六进制</label>
+	</p>
+	<p>输入内容：<input type="text" id="input"></p>
+	<p>输出进制：
+		<label><input type="radio" name="output-base" value="2"> 二进制</label>
+		<label><input type="radio" name="output-base" value="8"> 八进制</label>
+		<label><input type="radio" name="output-base" value="10"> 十进制</label>
+		<label><input type="radio" name="output-base" value="16" checked> 十六进制</label>
+	</p>
+	<p>结果：<span id="output"></span></p>
+	<button id="convert-btn">转换</button>
+	<button id="copy-btn">复制结果</button>
 
-    <script>
-      // 获取 DOM 元素
-      const inputBaseSelect = document.getElementById("input-base");
-      const inputElement = document.getElementById("input");
-      const outputBaseSelect = document.getElementById("output-base");
-      const outputElement = document.getElementById("output");
-      const convertBtn = document.getElementById("convert-btn");
-      const copyBtn = document.getElementById("copy-btn");
+	<script>
+		// 获取 DOM 元素
+		const inputBaseRadios = document.getElementsByName('input-base');
+		const inputElement = document.getElementById('input');
+		const outputBaseRadios = document.getElementsByName('output-base');
+		const outputElement = document.getElementById('output');
+		const convertBtn = document.getElementById('convert-btn');
+		const copyBtn = document.getElementById('copy-btn');
 
-      // 转换函数
-      function convert() {
-        const inputBase = parseInt(inputBaseSelect.value);
-        const outputBase = parseInt(outputBaseSelect.value);
-        const input = inputElement.value;
+		// 转换函数
+		function convert() {
+			let inputBase, outputBase;
+			for (let i = 0; i < inputBaseRadios.length; i++) {
+				if (inputBaseRadios[i].checked) {
+					inputBase = parseInt(inputBaseRadios[i].value);
+					break;
+				}
+			}
+			for (let i = 0; i < outputBaseRadios.length; i++) {
+				if (outputBaseRadios[i].checked) {
+					outputBase = parseInt(outputBaseRadios[i].value);
+					break;
+				}
+			}
+			const input = inputElement.value;
 
-        // 将输入内容转换为十进制
-        const decimal = parseInt(input, inputBase);
+			// 将输入内容转换为十进制
+			const decimal = parseInt(input, inputBase);
 
-        // 将十进制转换为输出进制
-        const output = decimal.toString(outputBase);
+			// 将十进制转换为输出进制
+			const output = decimal.toString(outputBase);
 
-        // 显示结果
-        outputElement.textContent = output;
-      }
+			// 显示结果
+			outputElement.textContent = output;
+		}
 
-      // 绑定事件
-      convertBtn.addEventListener("click", convert);
-      copyBtn.addEventListener("click", () => {
-        // 复制结果到剪贴板
-        navigator.clipboard.writeText(outputElement.textContent);
-      });
-    </script>
-  </body>
+		// 绑定事件
+		convertBtn.addEventListener('click', convert);
+		copyBtn.addEventListener('click', () => {
+			// 复制结果到剪贴板
+			navigator.clipboard.writeText(outputElement.textContent);
+		});
+	</script>
+</body>
 </html>
