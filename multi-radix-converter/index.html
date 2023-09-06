@@ -10,8 +10,7 @@
     <p>
       输入进制：
       <label
-        ><input type="radio" name="input-base" value="2" checked />
-        二进制（BIN）</label
+        ><input type="radio" name="input-base" value="2" /> 二进制（BIN）</label
       >
       <label
         ><input type="radio" name="input-base" value="8" /> 八进制（OCT）</label
@@ -21,17 +20,15 @@
         十进制（DEC）</label
       >
       <label
-        ><input type="radio" name="input-base" value="16" />
+        ><input type="radio" name="input-base" value="16" checked />
         十六进制（HEX）</label
       >
     </p>
-    <p>
-      输入内容：<input type="text" id="input" />
-    </p>
+    <p>输入内容：<input type="text" id="input" /></p>
     <p>
       输出进制：
       <label
-        ><input type="radio" name="output-base" value="2" />
+        ><input type="radio" name="output-base" value="2" checked />
         二进制（BIN）</label
       >
       <label
@@ -43,12 +40,13 @@
         十进制（DEC）</label
       >
       <label
-        ><input type="radio" name="output-base" value="16" checked />
+        ><input type="radio" name="output-base" value="16" />
         十六进制（HEX）</label
       >
     </p>
     <p>输出内容：<span id="output" style="font-weight: bold" /></p>
-    <button id="switch-btn">切换输入输出</button><button id="vertical-output-btn">竖向输出</button
+    <button id="switch-btn">切换输入输出</button
+    ><button id="vertical-output-btn">竖向输出</button
     ><button id="copyBtn">一键复制</button>
     <p></p>
 
