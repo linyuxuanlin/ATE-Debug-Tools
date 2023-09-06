@@ -12,6 +12,7 @@ body {
   width: 400px;
   height: 150px;
   min-height: 50px;
+  min-width: 5000px;
   overflow: auto;
 }
 
