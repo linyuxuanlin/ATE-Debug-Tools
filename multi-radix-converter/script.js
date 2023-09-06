@@ -94,19 +94,13 @@ outputElement.addEventListener("dblclick", () => {
   //alert("已复制");
 });
 
-// 一键复制函数
-function copyOutput() {
-  // 复制结果到剪贴板
-  //navigator.clipboard.writeText(outputElement.textContent);
-}
-
 // 绑定事件
 switchBtn.addEventListener("click", switchOutput);
 copyBtn.addEventListener("click", copyOutput);
 //verticalOutputBtn.addEventListener("click", verticalOutput);
 
 function copyOutput() {
-  const outputText = document.getElementById("output").innerText;
+  const outputText = document.getElementById("copyElement").innerText;
   const tempTextArea = document.createElement("textarea");
   tempTextArea.value = outputText;
   document.body.appendChild(tempTextArea);
