@@ -83,7 +83,7 @@ outputElement.addEventListener("dblclick", () => {
 // 一键复制函数
 function copyOutput() {
   // 复制结果到剪贴板
-  navigator.clipboard.writeText(outputElement.textContent);
+  //navigator.clipboard.writeText(outputElement.textContent);
 }
 
 // 绑定事件
