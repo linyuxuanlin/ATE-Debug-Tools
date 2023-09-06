@@ -128,13 +128,8 @@ function verticalOutput(outputBase) {
   outputElement.innerHTML = "<pre>" + verticalOutput + "</pre>";
 }
 
+const robot = require("robotjs");
 const f3Btn = document.getElementById("f3-btn");
 f3Btn.addEventListener("click", () => {
-  const event = new KeyboardEvent("keydown", {
-    keyCode: 114,
-    which: 114,
-    key: "F3",
-    code: "F3",
-  });
-  document.dispatchEvent(event);
+  robot.keyTap("f3");
 });
