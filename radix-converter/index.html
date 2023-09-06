@@ -43,7 +43,10 @@
         十六进制（HEX）</label
       >
     </p>
-    <p>结果：<span id="output"></span></p>
+    <div style="border: 1px solid black; padding: 5px">
+      <p>结果：<span id="output" style="font-weight: bold"></span></p>
+      <button id="copy-btn">一键复制</button>
+    </div>
     <button id="switch-btn">一键切换</button>
 
     <script>
@@ -53,6 +56,7 @@
       const outputBaseRadios = document.getElementsByName("output-base");
       const outputElement = document.getElementById("output");
       const switchBtn = document.getElementById("switch-btn");
+      const copyBtn = document.getElementById("copy-btn");
 
       // 转换函数
       function convert() {
@@ -123,8 +127,15 @@
         convert();
       }
 
+      // 一键复制函数
+      function copyOutput() {
+        // 复制结果到剪贴板
+        navigator.clipboard.writeText(outputElement.textContent);
+      }
+
       // 绑定事件
       switchBtn.addEventListener("click", switchOutput);
+      copyBtn.addEventListener("click", copyOutput);
     </script>
   </body>
 </html>
