@@ -103,7 +103,7 @@ function copyOutput() {
   tempTextArea.select();
   document.execCommand("copy");
   document.body.removeChild(tempTextArea);
-  alert("已复制到剪贴板！");
+  //alert("已复制到剪贴板！");
 }
 
 function goToHomePage() {
