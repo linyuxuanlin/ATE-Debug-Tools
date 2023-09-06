@@ -77,7 +77,7 @@ function switchOutput() {
 // 双击输出结果复制
 outputElement.addEventListener("dblclick", () => {
   navigator.clipboard.writeText(outputElement.textContent);
-  alert("已复制");
+  //alert("已复制");
 });
 
 // 一键复制函数
@@ -98,7 +98,7 @@ function copyOutput() {
   tempTextArea.select();
   document.execCommand("copy");
   document.body.removeChild(tempTextArea);
-  //alert("已复制到剪贴板！");
+  alert("已复制到剪贴板！");
 }
 
 function goToHomePage() {
