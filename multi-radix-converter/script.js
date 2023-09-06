@@ -34,7 +34,7 @@ function convert() {
   verticalOutput();
   // 如果竖向输出按钮已经被按下，将输出转换为竖向输出
   if (verticalOutputBtn.checked) {
-    verticalOutput();
+    verticalOutput(outputBase);
   }
 }
 
@@ -113,7 +113,7 @@ function goToHomePage() {
 }
 
 // 竖向输出函数
-function verticalOutput() {
+function verticalOutput(outputBase) {
   // 如果输出不为二进制，不做任何操作
   if (outputBase !== 2) {
     return;
