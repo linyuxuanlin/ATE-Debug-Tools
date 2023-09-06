@@ -31,7 +31,7 @@ function convert() {
 
   // 显示结果
   outputElement.textContent = output;
-
+  verticalOutput();
   // 如果竖向输出按钮已经被按下，将输出转换为竖向输出
   if (verticalOutputBtn.checked) {
     verticalOutput();
