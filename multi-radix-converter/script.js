@@ -31,6 +31,11 @@ function convert() {
 
   // 显示结果
   outputElement.textContent = output;
+
+  // 如果竖向输出按钮已经被按下，将输出转换为竖向输出
+  if (verticalOutputBtn.checked) {
+    verticalOutput();
+  }
 }
 
 // 自动转换输入
