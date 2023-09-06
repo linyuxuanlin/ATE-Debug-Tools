@@ -119,6 +119,7 @@ function verticalOutput() {
     verticalOutput += outputElement.textContent[i] + "\n";
   }
   verticalOutput = verticalOutput.replace(/0/g, "L").replace(/1/g, "H");
+
   // 显示竖向输出
-  outputElement.textContent = verticalOutput;
+  outputElement.innerHTML = "<pre>" + verticalOutput + "</pre>";
 }
