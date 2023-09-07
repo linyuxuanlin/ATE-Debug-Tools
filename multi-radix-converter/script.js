@@ -6,6 +6,10 @@ const outputElement = document.getElementById("output");
 const switchBtn = document.getElementById("switch-btn");
 const verticalOutputBtn = document.getElementById("vertical-output-btn");
 
+// 自动转换输入
+inputElement.addEventListener("input", convert);
+outputBaseRadios.addEventListener("click", convert);
+
 // 转换函数
 function convert() {
   let inputBase, outputBase;
@@ -30,20 +34,13 @@ function convert() {
   let output = isNaN(decimal) ? "" : decimal.toString(outputBase);
 
   if (outputBase === 2) {
-    // 如果输出二进制的位数小于32位，前面补0
+    //如果输出二进制的位数小于32位，前面补0
     output = output.padStart(32, "0");
   }
 
   // 显示结果
   outputElement.textContent = output;
-  // 如果竖向输出按钮已经被按下，将输出转换为竖向输出
-  if (verticalOutputBtn.checked) {
-    verticalOutput(outputBase);
-  }
 }
-
-// 自动转换输入
-inputElement.addEventListener("input", convert);
 
 // 一键切换函数
 function switchOutput() {
@@ -108,22 +105,4 @@ function copyOutput() {
 
 function goToHomePage() {
   window.location.href = "../index.html";
-}
-
-// 竖向输出函数
-function verticalOutput(outputBase) {
-  // 如果输出不为二进制，不做任何操作
-  if (outputBase !== 2) {
-    return;
-  }
-
-  // 将输出转换为竖向输出
-  let verticalOutput = "";
-  for (let i = 0; i < outputElement.textContent.length; i++) {
-    verticalOutput += outputElement.textContent[i] + "\n";
-  }
-  verticalOutput = verticalOutput.replace(/0/g, "L").replace(/1/g, "H");
-
-  // 显示竖向输出
-  outputElement.innerHTML = "<pre>" + verticalOutput + "</pre>";
 }
