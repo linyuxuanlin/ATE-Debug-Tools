@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Multi Radix Converter</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Multi Radix Converter</h1>
+      <div class="input-group">
+        <label for="input">输入：</label>
+        <input type="text" id="input" placeholder="请输入内容" />
+        <br />
+        <br />
+        <div class="select-group">
+          <input type="radio" id="input-bin" name="input-base" value="BIN" />
+          <label for="input-bin">二进制（BIN）</label>
+          <input type="radio" id="input-oct" name="input-base" value="OCT" />
+          <label for="input-oct">八进制（OCT）</label>
+          <input
+            type="radio"
+            id="input-dec"
+            name="input-base"
+            value="DEC"
+            checked
+          />
+          <label for="input-dec">十进制（DEC）</label>
+          <input type="radio" id="input-hex" name="input-base" value="HEX" />
+          <label for="input-hex">十六进制（HEX）</label>
+        </div>
+        <br />
+        <br />
+      </div>
+      <div class="output-group">
+        <label for="output">输出：</label>
+        <input type="text" id="output" readonly />
+        <br />
+        <br />
+        <div class="select-group">
+          <input type="radio" id="output-bin" name="output-base" value="BIN" />
+          <label for="output-bin">二进制（BIN）</label>
+          <input type="radio" id="output-oct" name="output-base" value="OCT" />
+          <label for="output-oct">八进制（OCT）</label>
+          <input
+            type="radio"
+            id="output-dec"
+            name="output-base"
+            value="DEC"
+            checked
+          />
+          <label for="output-dec">十进制（DEC）</label>
+          <input type="radio" id="output-hex" name="output-base" value="HEX" />
+          <label for="output-hex">十六进制（HEX）</label>
+        </div>
+        <br />
+        <br />
+        <br />
+        <button id="switch-btn">切换输入输出</button>
+        <button id="copy-btn">复制结果</button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
