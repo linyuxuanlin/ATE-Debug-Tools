@@ -29,6 +29,7 @@ function convertInput() {
     output.value = "";
     return;
   }
+
   let inputBase;
   if (inputBin.checked) {
     inputBase = 2;
@@ -55,41 +56,6 @@ function convertInput() {
     output.value = "输入格式错误";
   } else {
     output.value = num.toString(outputBase).toUpperCase();
-  }
-}
-
-// 将输出框的内容转换为输入进制的值
-function convertOutput() {
-  const value = output.value.trim();
-  if (value === "") {
-    input.value = "";
-    return;
-  }
-  let inputBase;
-  if (outputBin.checked) {
-    inputBase = 2;
-  } else if (outputOct.checked) {
-    inputBase = 8;
-  } else if (outputDec.checked) {
-    inputBase = 10;
-  } else if (outputHex.checked) {
-    inputBase = 16;
-  }
-  let outputBase;
-  if (inputBin.checked) {
-    outputBase = 2;
-  } else if (inputOct.checked) {
-    outputBase = 8;
-  } else if (inputDec.checked) {
-    outputBase = 10;
-  } else if (inputHex.checked) {
-    outputBase = 16;
-  }
-  const num = parseInt(value, inputBase);
-  if (isNaN(num)) {
-    input.value = "输入格式错误";
-  } else {
-    input.value = num.toString(outputBase).toUpperCase();
   }
 }
 
@@ -134,10 +100,10 @@ inputDec.addEventListener("change", convertInput);
 inputHex.addEventListener("change", convertInput);
 
 // 监听输出进制选择栏的变化，自动转换
-outputBin.addEventListener("change", convertOutput);
-outputOct.addEventListener("change", convertOutput);
-outputDec.addEventListener("change", convertOutput);
-outputHex.addEventListener("change", convertOutput);
+outputBin.addEventListener("change", convertInput);
+outputOct.addEventListener("change", convertInput);
+outputDec.addEventListener("change", convertInput);
+outputHex.addEventListener("change", convertInput);
 
 // 监听切换输入输出按钮的点击事件
 switchBtn.addEventListener("click", switchInputOutput);
