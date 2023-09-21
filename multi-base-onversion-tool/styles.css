@@ -5,8 +5,9 @@
 }
 
 h1 {
-  font-size: 36px;
+  font-size: 30px;
   margin-bottom: 30px;
+  color: #706d6d; /* 设置字体颜色 */
 }
 
 .input-group,
