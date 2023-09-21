@@ -11,6 +11,17 @@ const outputHex = document.getElementById("output-hex");
 const switchBtn = document.getElementById("switch-btn");
 const copyBtn = document.getElementById("copy-btn");
 
+// 填充输出长度
+function convertNumber(number, fromBase, toBase) {
+  let result = parseInt(number, fromBase).toString(toBase).toUpperCase();
+  if (toBase === 16) {
+    result = result.padStart(8, "0");
+  } else if (toBase === 2) {
+    result = result.padStart(32, "0");
+  }
+  return result;
+}
+
 // 将输入框的内容转换为输出进制的值
 function convertInput() {
   const value = input.value.trim();
@@ -39,6 +50,7 @@ function convertInput() {
     outputBase = 16;
   }
   const num = parseInt(value, inputBase);
+  //  const num = convertNumber(parseInt(value, inputBase), inputBase, outputBase);
   if (isNaN(num)) {
     output.value = "输入格式错误";
   } else {

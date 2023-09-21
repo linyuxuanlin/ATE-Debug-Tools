@@ -11,7 +11,17 @@ h1 {
 
 .input-group,
 .output-group {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+#input {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#output {
+  font-size: 24px;
+  font-weight: bold;
 }
 
 label {
