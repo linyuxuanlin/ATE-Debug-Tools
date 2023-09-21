@@ -1,107 +1,161 @@
-// 获取 DOM 元素
-const inputBaseRadios = document.getElementsByName("input-base");
-const inputElement = document.getElementById("input");
-const outputBaseRadios = document.getElementsByName("output-base");
-const outputElement = document.getElementById("output");
+const input = document.getElementById("input");
+const output = document.getElementById("output");
+const inputBin = document.getElementById("input-bin");
+const inputOct = document.getElementById("input-oct");
+const inputDec = document.getElementById("input-dec");
+const inputHex = document.getElementById("input-hex");
+const outputBin = document.getElementById("output-bin");
+const outputOct = document.getElementById("output-oct");
+const outputDec = document.getElementById("output-dec");
+const outputHex = document.getElementById("output-hex");
 const switchBtn = document.getElementById("switch-btn");
-const verticalOutputBtn = document.getElementById("vertical-output-btn");
+const copyBtn = document.getElementById("copy-btn");
 
-// 自动转换输入
-inputElement.addEventListener("input", convert);
-outputBaseRadios.addEventListener("click", convert);
-
-// 转换函数
-function convert() {
-  let inputBase, outputBase;
-  for (let i = 0; i < inputBaseRadios.length; i++) {
-    if (inputBaseRadios[i].checked) {
-      inputBase = parseInt(inputBaseRadios[i].value);
-      break;
-    }
+// 填充输出长度
+function convertNumber(number, fromBase, toBase) {
+  let result = parseInt(number, fromBase).toString(toBase).toUpperCase();
+  if (toBase === 16) {
+    result = result.padStart(8, "0");
+  } else if (toBase === 2) {
+    result = result.padStart(32, "0");
   }
-  for (let i = 0; i < outputBaseRadios.length; i++) {
-    if (outputBaseRadios[i].checked) {
-      outputBase = parseInt(outputBaseRadios[i].value);
-      break;
-    }
-  }
-  const input = inputElement.value;
-
-  // 将输入内容转换为十进制
-  const decimal = input ? parseInt(input, inputBase) : NaN;
-
-  // 将十进制转换为输出进制
-  let output = isNaN(decimal) ? "" : decimal.toString(outputBase);
-
-  if (outputBase === 2) {
-    //如果输出二进制的位数小于32位，前面补0
-    output = output.padStart(32, "0");
-  }
-
-  // 显示结果
-  outputElement.textContent = output;
+  return result;
 }
 
-// 一键切换函数
-function switchOutput() {
-  // 获取当前输入和输出的值和进制
-  const input = inputElement.value;
-  const output = outputElement.textContent;
-  let inputBase, outputBase;
-  for (let i = 0; i < inputBaseRadios.length; i++) {
-    if (inputBaseRadios[i].checked) {
-      inputBase = parseInt(inputBaseRadios[i].value);
-      break;
-    }
+// 将输入框的内容转换为输出进制的值
+function convertInput() {
+  const value = input.value.trim();
+  if (value === "") {
+    output.value = "";
+    return;
   }
-  for (let i = 0; i < outputBaseRadios.length; i++) {
-    if (outputBaseRadios[i].checked) {
-      outputBase = parseInt(outputBaseRadios[i].value);
-      break;
-    }
+  let inputBase;
+  if (inputBin.checked) {
+    inputBase = 2;
+  } else if (inputOct.checked) {
+    inputBase = 8;
+  } else if (inputDec.checked) {
+    inputBase = 10;
+  } else if (inputHex.checked) {
+    inputBase = 16;
   }
-
-  // 切换输入和输出的值和进制
-  inputElement.value = output;
-  outputElement.textContent = input;
-  for (let i = 0; i < inputBaseRadios.length; i++) {
-    if (parseInt(inputBaseRadios[i].value) === outputBase) {
-      inputBaseRadios[i].checked = true;
-      break;
-    }
+  let outputBase;
+  if (outputBin.checked) {
+    outputBase = 2;
+  } else if (outputOct.checked) {
+    outputBase = 8;
+  } else if (outputDec.checked) {
+    outputBase = 10;
+  } else if (outputHex.checked) {
+    outputBase = 16;
   }
-  for (let i = 0; i < outputBaseRadios.length; i++) {
-    if (parseInt(outputBaseRadios[i].value) === inputBase) {
-      outputBaseRadios[i].checked = true;
-      break;
-    }
+  const num = parseInt(value, inputBase);
+  //  const num = convertNumber(parseInt(value, inputBase), inputBase, outputBase);
+  if (isNaN(num)) {
+    output.value = "输入格式错误";
+  } else {
+    output.value = num.toString(outputBase).toUpperCase();
   }
-
-  // 自动转换输出
-  convert();
 }
 
-// 双击输出结果复制
-outputElement.addEventListener("dblclick", () => {
-  navigator.clipboard.writeText(outputElement.textContent);
-  //alert("已复制");
+// 将输出框的内容转换为输入进制的值
+function convertOutput() {
+  const value = output.value.trim();
+  if (value === "") {
+    input.value = "";
+    return;
+  }
+  let inputBase;
+  if (outputBin.checked) {
+    inputBase = 2;
+  } else if (outputOct.checked) {
+    inputBase = 8;
+  } else if (outputDec.checked) {
+    inputBase = 10;
+  } else if (outputHex.checked) {
+    inputBase = 16;
+  }
+  let outputBase;
+  if (inputBin.checked) {
+    outputBase = 2;
+  } else if (inputOct.checked) {
+    outputBase = 8;
+  } else if (inputDec.checked) {
+    outputBase = 10;
+  } else if (inputHex.checked) {
+    outputBase = 16;
+  }
+  const num = parseInt(value, inputBase);
+  if (isNaN(num)) {
+    input.value = "输入格式错误";
+  } else {
+    input.value = num.toString(outputBase).toUpperCase();
+  }
+}
+
+// 切换输入输出
+function switchInputOutput() {
+  const inputValue = input.value;
+  const inputBase = document.querySelector(
+    'input[name="input-base"]:checked'
+  ).value;
+  const outputBase = document.querySelector(
+    'input[name="output-base"]:checked'
+  ).value;
+  input.value = output.value;
+  document.querySelector(
+    `input[name="input-base"][value="${outputBase}"]`
+  ).checked = true;
+  output.value = inputValue;
+  document.querySelector(
+    `input[name="output-base"][value="${inputBase}"]`
+  ).checked = true;
+}
+
+// 复制输出框的内容到剪贴板
+function copyOutput() {
+  output.select();
+  document.execCommand("copy");
+  copyBtn.textContent = "已复制";
+  copyBtn.classList.add("copied");
+  setTimeout(() => {
+    copyBtn.textContent = "复制内容";
+    copyBtn.classList.remove("copied");
+  }, 1000);
+}
+
+// 监听输入框的内容变化，自动转换
+input.addEventListener("input", convertInput);
+
+// 监听输入进制选择栏的变化，自动转换
+inputBin.addEventListener("change", convertInput);
+inputOct.addEventListener("change", convertInput);
+inputDec.addEventListener("change", convertInput);
+inputHex.addEventListener("change", convertInput);
+
+// 监听输出进制选择栏的变化，自动转换
+outputBin.addEventListener("change", convertOutput);
+outputOct.addEventListener("change", convertOutput);
+outputDec.addEventListener("change", convertOutput);
+outputHex.addEventListener("change", convertOutput);
+
+// 监听切换输入输出按钮的点击事件
+switchBtn.addEventListener("click", switchInputOutput);
+
+// 监听一键复制按钮的点击事件
+copyBtn.addEventListener("click", copyOutput);
+
+// 监听输出框的双击事件，复制内容并提示
+output.addEventListener("dblclick", function () {
+  copyOutput();
+  setTimeout(() => {
+    copyBtn.textContent = "复制内容";
+    copyBtn.classList.remove("copied");
+  }, 1000);
 });
 
-// 绑定事件
-switchBtn.addEventListener("click", switchOutput);
-copyBtn.addEventListener("click", copyOutput);
-//verticalOutputBtn.addEventListener("click", verticalOutput);
-
-function copyOutput() {
-  const outputText = document.getElementById("output").innerText;
-  const tempTextArea = document.createElement("textarea");
-  tempTextArea.value = outputText;
-  document.body.appendChild(tempTextArea);
-  tempTextArea.select();
-  document.execCommand("copy");
-  document.body.removeChild(tempTextArea);
-  //alert("已复制到剪贴板！");
-}
+// 初始化，自动转换输入框的内容
+convertInput();
 
 function goToHomePage() {
   window.location.href = "../index.html";

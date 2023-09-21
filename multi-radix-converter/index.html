@@ -2,56 +2,65 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>进制转换工具</title>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <title>Multi-base Conversion Tool</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>进制转换工具</h1>
-    <p>
-      输入进制：
-      <label
-        ><input type="radio" name="input-base" value="2" /> 二进制（BIN）</label
-      >
-      <label
-        ><input type="radio" name="input-base" value="8" /> 八进制（OCT）</label
-      >
-      <label
-        ><input type="radio" name="input-base" value="10" />
-        十进制（DEC）</label
-      >
-      <label
-        ><input type="radio" name="input-base" value="16" checked />
-        十六进制（HEX）</label
-      >
-    </p>
-    <p>输入内容：<input type="text" id="input" /></p>
-    <p>
-      输出进制：
-      <label
-        ><input type="radio" name="output-base" value="2" checked />
-        二进制（BIN）</label
-      >
-      <label
-        ><input type="radio" name="output-base" value="8" />
-        八进制（OCT）</label
-      >
-      <label
-        ><input type="radio" name="output-base" value="10" />
-        十进制（DEC）</label
-      >
-      <label
-        ><input type="radio" name="output-base" value="16" />
-        十六进制（HEX）</label
-      >
-    </p>
-
-    <button id="switch-btn">切换输入输出</button
-    ><button id="vertical-output-btn">竖向输出</button
-    ><button id="copyBtn">一键复制</button>
-
-    <p>输出内容：<br /><br /><br /><span id="output" /></p>
+    <div class="container">
+      <h1>Multi-base Conversion Tool</h1>
+      <div class="input-group">
+        <label for="input">输入：</label>
+        <input type="text" id="input" placeholder="请输入内容" />
+        <br />
+        <br />
+        <div class="select-group">
+          <input type="radio" id="input-bin" name="input-base" value="BIN" />
+          <label for="input-bin">二进制(BIN)</label>
+          <input type="radio" id="input-oct" name="input-base" value="OCT" />
+          <label for="input-oct">八进制(OCT)</label>
+          <input type="radio" id="input-dec" name="input-base" value="DEC" />
+          <label for="input-dec">十进制(DEC)</label>
+          <input
+            type="radio"
+            id="input-hex"
+            name="input-base"
+            value="HEX"
+            checked
+          />
+          <label for="input-hex">十六进制(HEX)</label>
+        </div>
+        <br />
+        <br />
+      </div>
+      <div class="output-group">
+        <label for="output">输出：</label>
+        <input type="text" id="output" readonly />
+        <br />
+        <br />
+        <div class="select-group">
+          <input
+            type="radio"
+            id="output-bin"
+            name="output-base"
+            value="BIN"
+            checked
+          />
+          <label for="output-bin">二进制(BIN)</label>
+          <input type="radio" id="output-oct" name="output-base" value="OCT" />
+          <label for="output-oct">八进制(OCT)</label>
+          <input type="radio" id="output-dec" name="output-base" value="DEC" />
+          <label for="output-dec">十进制(DEC)</label>
+          <input type="radio" id="output-hex" name="output-base" value="HEX" />
+          <label for="output-hex">十六进制(HEX)</label>
+        </div>
+        <br />
+        <br />
+        <br />
+        <button id="switch-btn">切换输入输出</button>
+        <button id="copy-btn">复制结果</button>
+      </div>
+    </div>
     <div class="return-button" onclick="goToHomePage()">Return</div>
-
     <script src="script.js"></script>
   </body>
 </html>

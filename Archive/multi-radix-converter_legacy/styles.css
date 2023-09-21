@@ -1,0 +1,50 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+#output {
+  margin-top: 20px;
+  font-size: 30px;
+  border: 2px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  width: 400px;
+  height: 150px;
+  min-height: 50px;
+  overflow: auto;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+/* 悬浮的返回按钮 */
+.return-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #dcdcdc;
+  color: #555;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+/* 添加媒体查询以适应小屏幕 */
+@media (max-width: 600px) {
+  .replaceRule {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+}
+
+.return-button:hover {
+  background-color: #aeaeae;
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+}
